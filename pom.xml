@@ -9,10 +9,10 @@
 		<version>2.5.4</version>
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>br.com.skeleton</groupId>
-	<artifactId>mentoria-skeleton-java</artifactId>
+	<groupId>br.com.mentoria</groupId>
+	<artifactId>exemplo-mentoria</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>mentoria-skeleton-java</name>
+	<name>exemplo-mentoria</name>
 	<description>Exemplo skeleton de projeto</description>
 	<properties>
 		<java.version>11</java.version>
