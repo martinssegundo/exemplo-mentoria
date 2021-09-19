@@ -1,4 +1,4 @@
-package br.com.skeleton.config;
+package br.com.mentoria.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -20,7 +20,7 @@ public class SwaggerConfig {
     public Docket api() {
         return new Docket(DocumentationType.SWAGGER_2)
           .select()
-          .apis(RequestHandlerSelectors.basePackage("br.com.skeleton.apis"))
+          .apis(RequestHandlerSelectors.basePackage("br.com.mentoria.apis"))
           .paths(PathSelectors.any())
           .build()
           .useDefaultResponseMessages(false)
@@ -29,7 +29,7 @@ public class SwaggerConfig {
 	
 	private ApiInfo apiInfo() {
 	    return new ApiInfoBuilder()
-	            .title("metoria-skeleton-java")
+	            .title("exemplo-mentoria")
 	            .description(buildDescription().toString())
 	            .version("1.0.0")
 	            .license("Apache License Version 2.0")
@@ -40,8 +40,7 @@ public class SwaggerConfig {
 	
 	private StringBuilder buildDescription() {
 		StringBuilder text = new StringBuilder();
-		text.append("Um exemplo de aplicação Spring Boot REST API e documentada com swagger.");
-		text.append(" Neste exemplo de skeleton estão sendo utilizados Spring e swagger");
+		text.append("Api para criacao de campeões de star wars.");
 		return text;
 	}
 
