@@ -1,4 +1,11 @@
 # Exemplo de código incremental para Servidor Programadores Java
+
+## Até o momento implementado:
+ * /capeao/savar - Api responsavel por expor a forma de salvar um campeão
+ * Serviço com as regras de negocio de salvar campão (não invoca nada de salvar)
+
+
+
 # JEDI VS SITH
 
 
