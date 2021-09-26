@@ -1,14 +1,26 @@
 package br.com.mentoria.servicos.contratos.impl;
 
+import br.com.mentoria.adaptadores.CampeaoRepositorioAdapter;
+import br.com.mentoria.adaptadores.CapeaoServiceAdpter;
+import br.com.mentoria.bd.contratos.RepositorioCampeaoEntity;
 import br.com.mentoria.servicos.contratos.CampeaoServico;
 import br.com.mentoria.servicos.entidades.Campeao;
 import br.com.mentoria.servicos.exececoes.CampeaoException;
 import br.com.mentoria.servicos.util.EmailUtil;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class CampeaoServicoImpl implements CampeaoServico {
 
+    private RepositorioCampeaoEntity campeaoRepositorio;
+
+    @Autowired
+    public CampeaoServicoImpl(RepositorioCampeaoEntity campeaoRepositorio){
+        this.campeaoRepositorio = campeaoRepositorio;
+    }
 
     @Override
     public boolean salvarCampeao(Campeao campeao) throws CampeaoException {
@@ -18,7 +30,16 @@ public class CampeaoServicoImpl implements CampeaoServico {
         } else {
             campeao = criarSith(campeao);
         }
+
+        campeaoRepositorio.save((new CampeaoRepositorioAdapter(campeao)).getCampeaoEntity());
+
+
         return campeao.getHp() != null;
+    }
+
+    @Override
+    public List<Campeao> listarTodos() {
+        return new CapeaoServiceAdpter(campeaoRepositorio.findAll()).getCampeoes();
     }
 
     private Campeao criarJedi(Campeao campeao) {
