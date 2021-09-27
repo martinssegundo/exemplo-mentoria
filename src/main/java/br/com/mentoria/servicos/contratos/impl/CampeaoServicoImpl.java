@@ -5,6 +5,7 @@ import br.com.mentoria.adaptadores.CapeaoServiceAdpter;
 import br.com.mentoria.bd.contratos.RepositorioCampeaoEntity;
 import br.com.mentoria.servicos.contratos.CampeaoServico;
 import br.com.mentoria.servicos.entidades.Campeao;
+import br.com.mentoria.servicos.entidades.enums.TipoCampeao;
 import br.com.mentoria.servicos.exececoes.CampeaoException;
 import br.com.mentoria.servicos.util.EmailUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +26,7 @@ public class CampeaoServicoImpl implements CampeaoServico {
     @Override
     public boolean salvarCampeao(Campeao campeao) throws CampeaoException {
         validaCampeao(campeao);
-        if (campeao.getTipo().equals("jedi") ) {
+        if (campeao.getTipo().equals(TipoCampeao.JEDI) ) {
             campeao = criarJedi(campeao);
         } else {
             campeao = criarSith(campeao);
