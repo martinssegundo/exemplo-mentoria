@@ -9,10 +9,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class CampeaoAPI {
-    private String nome;
-    private String email;
-    private String corSabre;
-    private TipoCampeaoAPI tipoCapeao;
-    private String erro;
+public class TipoCampeaoAPI {
+
+    private String nomeTecnico;
+    private String descricao;
 }

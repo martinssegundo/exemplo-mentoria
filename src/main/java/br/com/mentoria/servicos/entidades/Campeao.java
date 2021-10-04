@@ -1,6 +1,5 @@
 package br.com.mentoria.servicos.entidades;
 
-import br.com.mentoria.servicos.entidades.enums.TipoCampeao;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
