@@ -1,5 +1,7 @@
-package br.com.mentoria.adaptadores;
+package br.com.mentoria.adaptadores.campeao;
 
+import br.com.mentoria.adaptadores.tipoCampeao.TipoCampeaoEntidadeAdpter;
+import br.com.mentoria.bd.contratos.RepositorioTipoCampeao;
 import br.com.mentoria.bd.entidades.CampeaoEntidade;
 import br.com.mentoria.servicos.entidades.Campeao;
 import lombok.Data;
@@ -9,11 +11,12 @@ public class CampeaoEntidadeAdapter {
 
     private CampeaoEntidade campeaoEntidade;
 
-    public CampeaoEntidadeAdapter(Campeao campeao){
-        converteCampeaoEmCampeaoEntity(campeao);
+    public CampeaoEntidadeAdapter(Campeao campeao, RepositorioTipoCampeao repositorioTipoCampeao){
+        converteCampeaoEmCampeaoEntity(campeao, repositorioTipoCampeao);
     }
 
-    private void converteCampeaoEmCampeaoEntity(Campeao campeao){
+    private void converteCampeaoEmCampeaoEntity(Campeao campeao,
+                                                RepositorioTipoCampeao repositorioTipoCampeao){
         campeaoEntidade = campeaoEntidade.builder()
                 .corSabre(campeao.getCorSabre())
                 .email(campeao.getEmail())
@@ -24,7 +27,9 @@ public class CampeaoEntidadeAdapter {
                 .habilidadeComSabre(campeao.getHabilidadeComSabre())
                 .mental(campeao.getMental())
                 .previsao(campeao.getPrevisao())
-                .tipo(new TipoCampeaoEntidadeAdpter(campeao.getTipo()).getTipoCampeaoEntidade())
+                .tipo(new TipoCampeaoEntidadeAdpter(campeao.getTipo(),repositorioTipoCampeao)
+                        .getTipoCampeaoEntidade()
+                )
                 .build();
     }
 }

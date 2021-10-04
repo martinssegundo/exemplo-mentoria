@@ -1,4 +1,4 @@
-package br.com.mentoria.adaptadores;
+package br.com.mentoria.adaptadores.tipoCampeao;
 
 import br.com.mentoria.apis.entidades.TipoCampeaoAPI;
 import br.com.mentoria.bd.entidades.TipoCampeaoEntidade;
@@ -26,9 +26,13 @@ public class TipoCampeaoAdapter {
     }
 
     private TipoCampeao converteTipoCampeaoEntidadeEmTipoCampeao(TipoCampeaoEntidade tipoCampeaoEntidade){
-        return TipoCampeao.builder()
-                .descricao(tipoCampeaoEntidade.getTipoCampeao())
-                .nomeTecnico(tipoCampeaoEntidade.getNomeTecnico())
-                .build();
+        if(tipoCampeaoEntidade != null){
+            return TipoCampeao.builder()
+                    .id(tipoCampeaoEntidade.getId())
+                    .descricao(tipoCampeaoEntidade.getTipoCampeao())
+                    .nomeTecnico(tipoCampeaoEntidade.getNomeTecnico())
+                    .build();
+        }else
+            return TipoCampeao.builder().build();
     }
 }

@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Builder
 public class TipoCampeao {
+    private Long id;
     private String nomeTecnico;
     private String descricao;
 }

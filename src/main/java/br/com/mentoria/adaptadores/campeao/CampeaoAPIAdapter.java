@@ -1,5 +1,6 @@
-package br.com.mentoria.adaptadores;
+package br.com.mentoria.adaptadores.campeao;
 
+import br.com.mentoria.adaptadores.tipoCampeao.TipoCampeaoAPIAdpter;
 import br.com.mentoria.apis.entidades.CampeaoAPI;
 import br.com.mentoria.servicos.entidades.Campeao;
 import lombok.Data;

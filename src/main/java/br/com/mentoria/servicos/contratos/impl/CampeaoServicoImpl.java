@@ -1,8 +1,9 @@
 package br.com.mentoria.servicos.contratos.impl;
 
-import br.com.mentoria.adaptadores.CampeaoEntidadeAdapter;
-import br.com.mentoria.adaptadores.CapeaoServiceAdpter;
+import br.com.mentoria.adaptadores.campeao.CampeaoEntidadeAdapter;
+import br.com.mentoria.adaptadores.campeao.CapeaoServiceAdpter;
 import br.com.mentoria.bd.contratos.RepositorioCampeaoEntity;
+import br.com.mentoria.bd.contratos.RepositorioTipoCampeao;
 import br.com.mentoria.servicos.contratos.CampeaoServico;
 import br.com.mentoria.servicos.entidades.Campeao;
 import br.com.mentoria.servicos.entidades.enums.TipoCampeaoEnum;
@@ -17,10 +18,13 @@ import java.util.List;
 public class CampeaoServicoImpl implements CampeaoServico {
 
     private RepositorioCampeaoEntity campeaoRepositorio;
+    private RepositorioTipoCampeao repositorioTipoCampeao;
 
     @Autowired
-    public CampeaoServicoImpl(RepositorioCampeaoEntity campeaoRepositorio){
+    public CampeaoServicoImpl(RepositorioCampeaoEntity campeaoRepositorio,
+                              RepositorioTipoCampeao repositorioTipoCampeao){
         this.campeaoRepositorio = campeaoRepositorio;
+        this.repositorioTipoCampeao = repositorioTipoCampeao;
     }
 
     @Override
@@ -34,7 +38,8 @@ public class CampeaoServicoImpl implements CampeaoServico {
             throw new CampeaoException("Um tipo de campeão não existente foi selecionado");
         }
 
-        campeaoRepositorio.save((new CampeaoEntidadeAdapter(campeao)).getCampeaoEntidade());
+        campeaoRepositorio.save(new CampeaoEntidadeAdapter(campeao, repositorioTipoCampeao)
+                .getCampeaoEntidade());
 
 
         return campeao.getHp() != null;
