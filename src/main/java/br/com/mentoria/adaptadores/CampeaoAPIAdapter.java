@@ -2,7 +2,6 @@ package br.com.mentoria.adaptadores;
 
 import br.com.mentoria.apis.entidades.CampeaoAPI;
 import br.com.mentoria.servicos.entidades.Campeao;
-import br.com.mentoria.servicos.entidades.enums.TipoCampeao;
 import lombok.Data;
 
 import java.util.ArrayList;
@@ -35,7 +34,7 @@ public class CampeaoAPIAdapter {
                 .email(campeao.getEmail())
                 .corSabre(campeao.getCorSabre())
                 .nome(campeao.getNome())
-                .jedi(campeao.getTipo().equals(TipoCampeao.JEDI)?true:false)
+                .tipoCapeao(new TipoCampeaoAPIAdpter(campeao.getTipo()).getCampeaoAPI())
                 .build();
     }
 

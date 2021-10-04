@@ -25,7 +25,7 @@ import javax.persistence.*;
                 @Parameter(name = "increment_size", value = "1")
         }
 )
-public class CampeaoEntity {
+public class CampeaoEntidade {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQ_CAPEAO")
@@ -58,6 +58,6 @@ public class CampeaoEntity {
                     referencedColumnName = "ID_CAPEAO"),
             inverseJoinColumns = @JoinColumn(name = "ID_TIPO_CAMPEAO",
                     referencedColumnName = "ID_TIPO_CAMPEAO"))
-    private TipoCampeao tipo;
+    private TipoCampeaoEntidade tipo;
 }
 

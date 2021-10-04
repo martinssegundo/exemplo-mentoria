@@ -1,9 +1,8 @@
 package br.com.mentoria.adaptadores;
 
 import br.com.mentoria.apis.entidades.CampeaoAPI;
-import br.com.mentoria.bd.entidades.CampeaoEntity;
+import br.com.mentoria.bd.entidades.CampeaoEntidade;
 import br.com.mentoria.servicos.entidades.Campeao;
-import br.com.mentoria.servicos.entidades.enums.TipoCampeao;
 import lombok.Data;
 
 import java.util.ArrayList;
@@ -19,19 +18,19 @@ public class CapeaoServiceAdpter {
         this.campeao = convertCampeaoDTOEmCampeao(campeaoAPI);
     }
 
-    public CapeaoServiceAdpter(CampeaoEntity campeaoEntity){
-        this.campeao = convertCampeaoEntityEmCampeao(campeaoEntity);
+    public CapeaoServiceAdpter(CampeaoEntidade campeaoEntidade){
+        this.campeao = convertCampeaoEntityEmCampeao(campeaoEntidade);
     }
 
-    public CapeaoServiceAdpter(List<CampeaoEntity> campeaoEntities){
+    public CapeaoServiceAdpter(List<CampeaoEntidade> campeaoEntities){
         campeoes = convertListEntityEmListCampeao(campeaoEntities);
     }
 
 
-    private List<Campeao> convertListEntityEmListCampeao(List<CampeaoEntity> campeaoEntityList){
+    private List<Campeao> convertListEntityEmListCampeao(List<CampeaoEntidade> campeaoEntidadeList){
         campeoes = new ArrayList<>();
-        for (CampeaoEntity campeaoEntity : campeaoEntityList) {
-            campeoes.add(convertCampeaoEntityEmCampeao(campeaoEntity));
+        for (CampeaoEntidade campeaoEntidade : campeaoEntidadeList) {
+            campeoes.add(convertCampeaoEntityEmCampeao(campeaoEntidade));
         }
         return campeoes;
     }
@@ -41,26 +40,22 @@ public class CapeaoServiceAdpter {
                 .email(campeaoAPI.getEmail())
                 .nome(campeaoAPI.getNome())
                 .corSabre(campeaoAPI.getCorSabre())
-                .tipo(campeaoAPI.isJedi()? TipoCampeao.JEDI :TipoCampeao.SITH)
+                .tipo(new TipoCampeaoAdapter(campeaoAPI.getTipoCapeao()).getTipoCampeao())
                 .build();
     }
 
-    private Campeao convertCampeaoEntityEmCampeao(CampeaoEntity campeaoEntity){
+    private Campeao convertCampeaoEntityEmCampeao(CampeaoEntidade campeaoEntidade){
         return Campeao.builder()
-                .hp(campeaoEntity.getHp())
-                .afinadadeForca(campeaoEntity.getAfinadadeForca())
-                .previsao(campeaoEntity.getPrevisao())
-                .mental(campeaoEntity.getMental())
-                .corSabre(campeaoEntity.getCorSabre())
-                .nome(campeaoEntity.getNome())
-                .forcaFisica(campeaoEntity.getForcaFisica())
-                .email(campeaoEntity.getEmail())
-                .habilidadeComSabre(campeaoEntity.getHabilidadeComSabre())
-                .tipo(
-                    TipoCampeao.getTipoCampeao(
-                        (campeaoEntity.getTipo() != null?campeaoEntity.getTipo().getId():null)
-                    )
-                )
+                .hp(campeaoEntidade.getHp())
+                .afinadadeForca(campeaoEntidade.getAfinadadeForca())
+                .previsao(campeaoEntidade.getPrevisao())
+                .mental(campeaoEntidade.getMental())
+                .corSabre(campeaoEntidade.getCorSabre())
+                .nome(campeaoEntidade.getNome())
+                .forcaFisica(campeaoEntidade.getForcaFisica())
+                .email(campeaoEntidade.getEmail())
+                .habilidadeComSabre(campeaoEntidade.getHabilidadeComSabre())
+                .tipo(new TipoCampeaoAdapter(campeaoEntidade.getTipo()).getTipoCampeao())
                 .build();
     }
 }

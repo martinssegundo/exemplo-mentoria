@@ -28,7 +28,13 @@ public class ApiCampeaoImpl implements ApiCampeao {
 	@Override
 	public ResponseEntity<CampeaoAPI> salvarCampeao(@RequestBody CampeaoAPI campeaoAPI) throws CampeaoException {
 		CapeaoServiceAdpter adpter = new CapeaoServiceAdpter(campeaoAPI);
-		campeaoServico.salvarCampeao(adpter.getCampeao());
+		try{
+			campeaoServico.salvarCampeao(adpter.getCampeao());
+		}catch (CampeaoException exception){
+			return ResponseEntity.status(406).body(CampeaoAPI.builder()
+					.erro(exception.getMessage())
+					.build());
+		}
 		return ResponseEntity.ok(campeaoAPI);
 	}
 

@@ -1,11 +1,11 @@
 package br.com.mentoria.servicos.contratos.impl;
 
-import br.com.mentoria.adaptadores.CampeaoRepositorioAdapter;
+import br.com.mentoria.adaptadores.CampeaoEntidadeAdapter;
 import br.com.mentoria.adaptadores.CapeaoServiceAdpter;
 import br.com.mentoria.bd.contratos.RepositorioCampeaoEntity;
 import br.com.mentoria.servicos.contratos.CampeaoServico;
 import br.com.mentoria.servicos.entidades.Campeao;
-import br.com.mentoria.servicos.entidades.enums.TipoCampeao;
+import br.com.mentoria.servicos.entidades.enums.TipoCampeaoEnum;
 import br.com.mentoria.servicos.exececoes.CampeaoException;
 import br.com.mentoria.servicos.util.EmailUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,13 +26,15 @@ public class CampeaoServicoImpl implements CampeaoServico {
     @Override
     public boolean salvarCampeao(Campeao campeao) throws CampeaoException {
         validaCampeao(campeao);
-        if (campeao.getTipo().equals(TipoCampeao.JEDI) ) {
+        if (campeao.getTipo().getNomeTecnico().equals(TipoCampeaoEnum.JEDI.toString())) {
             campeao = criarJedi(campeao);
-        } else {
+        } else if (campeao.getTipo().getNomeTecnico().equals(TipoCampeaoEnum.SITH.toString())){
             campeao = criarSith(campeao);
+        }else{
+            throw new CampeaoException("Um tipo de campeão não existente foi selecionado");
         }
 
-        campeaoRepositorio.save((new CampeaoRepositorioAdapter(campeao)).getCampeaoEntity());
+        campeaoRepositorio.save((new CampeaoEntidadeAdapter(campeao)).getCampeaoEntidade());
 
 
         return campeao.getHp() != null;

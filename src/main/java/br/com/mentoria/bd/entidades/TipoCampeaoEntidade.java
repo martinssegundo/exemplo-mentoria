@@ -25,11 +25,14 @@ import javax.persistence.*;
                 @Parameter(name = "increment_size", value = "1")
         }
 )
-public class TipoCampeao {
+public class TipoCampeaoEntidade {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQ_TIPO_CAMPEAO")
     @Column(name = "ID_TIPO_CAMPEAO")
     private Long id;
+
+    @Column(name = "DS_NOME_TECNICO")
+    private String nomeTecnico;
 
     @Column(name = "DS_TIPO_CAPEAO")
     private String tipoCampeao;
