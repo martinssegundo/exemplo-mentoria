@@ -1,4 +1,4 @@
-package br.com.mentoria.adaptadores;
+package br.com.mentoria.adaptadores.tipoCampeao;
 
 import br.com.mentoria.apis.entidades.TipoCampeaoAPI;
 import br.com.mentoria.servicos.entidades.TipoCampeao;

@@ -1,7 +1,7 @@
 package br.com.mentoria.apis.contratos.impl;
 
-import br.com.mentoria.adaptadores.CampeaoAPIAdapter;
-import br.com.mentoria.adaptadores.CapeaoServiceAdpter;
+import br.com.mentoria.adaptadores.campeao.CampeaoAPIAdapter;
+import br.com.mentoria.adaptadores.campeao.CapeaoServiceAdpter;
 import br.com.mentoria.apis.contratos.ApiCampeao;
 import br.com.mentoria.apis.entidades.CampeaoAPI;
 import br.com.mentoria.servicos.contratos.CampeaoServico;
