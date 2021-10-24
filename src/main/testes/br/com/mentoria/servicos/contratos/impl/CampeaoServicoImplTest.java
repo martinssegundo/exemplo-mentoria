@@ -2,6 +2,7 @@ package br.com.mentoria.servicos.contratos.impl;
 
 import br.com.mentoria.bd.contratos.RepositorioCampeaoEntity;
 import br.com.mentoria.bd.contratos.RepositorioTipoCampeao;
+import br.com.mentoria.bd.entidades.CampeaoEntidade;
 import br.com.mentoria.bd.entidades.TipoCampeaoEntidade;
 import br.com.mentoria.servicos.entidades.Campeao;
 import br.com.mentoria.servicos.entidades.TipoCampeao;
@@ -98,6 +99,14 @@ public class CampeaoServicoImplTest {
         List<Campeao> result = campeaoServicoImpl.listarTodos();
         assertTrue(result.size() == 1);
     }
+
+    @Test
+    public void testEncotraCampeaoSucesso() throws Exception{
+        when(campeaoRepositorio.findByEmail(anyString()))
+                .thenReturn(CampeaoEntidade.builder().build());
+        assertNotNull(campeaoServicoImpl.encotraCampeao("bananinha@banana.com"));
+    }
+
 }
 
 //Generated with love by TestMe :) Please report issues and submit feature requests at: http://weirddev.com/forum#!/testme

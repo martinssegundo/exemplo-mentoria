@@ -34,7 +34,7 @@ public class CampeaoEntidade {
 
     @Column(name = "DS_NOME")
     private String nome;
-    @Column(name = "DS_EMAIL")
+    @Column(name = "DS_EMAIL",nullable = false,unique = true)
     private String email;
     @Column(name = "DS_COR_SABER")
     private String corSabre;

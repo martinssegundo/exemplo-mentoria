@@ -395,3 +395,16 @@ org.h2.jdbc.JdbcSQLNonTransientConnectionException: Database is already closed (
 2021-10-03 21:35:51 jdbc[13]: exception
 org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "WHERE[*] DS_NOME_TECNICO  LIKE 'JEDI'"; SQL statement:
 WHERE ds_nome_tecnico  LIKE 'JEDI' [42000-200]
+2021-10-24 17:37:44 jdbc[14]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "UPDATE TB_CAPEAO 
+SET DS_EMAIL  = 'bananinha4@banana.com'
+WHERE ID_CAPEAO = 4	
+
+
+SELECT[*] * FROM TB_CAPEAO"; SQL statement:
+update tb_capeao 
+set ds_email  = 'bananinha4@banana.com'
+where id_capeao = 4	
+
+
+select * from TB_CAPEAO [42000-200]

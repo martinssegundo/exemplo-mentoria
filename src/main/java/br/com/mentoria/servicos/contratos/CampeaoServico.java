@@ -10,4 +10,6 @@ public interface CampeaoServico {
     boolean salvarCampeao(Campeao campeao) throws CampeaoException;
 
     List<Campeao> listarTodos();
+
+    Campeao encotraCampeao(String email);
 }
