@@ -20,11 +20,11 @@ public class CapeaoServiceAdpter {
     }
 
     public CapeaoServiceAdpter(CampeaoEntidade campeaoEntidade){
-        this.campeao = convertCampeaoEntityEmCampeao(campeaoEntidade);
+        setCampeao(convertCampeaoEntityEmCampeao(campeaoEntidade));
     }
 
     public CapeaoServiceAdpter(List<CampeaoEntidade> campeaoEntities){
-        campeoes = convertListEntityEmListCampeao(campeaoEntities);
+        setCampeoes(convertListEntityEmListCampeao(campeaoEntities));
     }
 
 

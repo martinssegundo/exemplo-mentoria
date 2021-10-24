@@ -8,6 +8,7 @@ import br.com.mentoria.servicos.contratos.CampeaoServico;
 import br.com.mentoria.servicos.entidades.Campeao;
 import br.com.mentoria.servicos.entidades.enums.TipoCampeaoEnum;
 import br.com.mentoria.servicos.exececoes.CampeaoException;
+import br.com.mentoria.servicos.util.CampeaoUtil;
 import br.com.mentoria.servicos.util.EmailUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -31,9 +32,9 @@ public class CampeaoServicoImpl implements CampeaoServico {
     public boolean salvarCampeao(Campeao campeao) throws CampeaoException {
         validaCampeao(campeao);
         if (campeao.getTipo().getNomeTecnico().equals(TipoCampeaoEnum.JEDI.toString())) {
-            campeao = criarJedi(campeao);
+            campeao = CampeaoUtil.criarJedi(campeao);
         } else if (campeao.getTipo().getNomeTecnico().equals(TipoCampeaoEnum.SITH.toString())){
-            campeao = criarSith(campeao);
+            campeao = CampeaoUtil.criarSith(campeao);
         }else{
             throw new CampeaoException("Um tipo de campeão não existente foi selecionado");
         }
@@ -50,38 +51,11 @@ public class CampeaoServicoImpl implements CampeaoServico {
         return new CapeaoServiceAdpter(campeaoRepositorio.findAll()).getCampeoes();
     }
 
-    private Campeao criarJedi(Campeao campeao) {
-        System.out.println("CRIOU UM JEDI");
-        return Campeao.builder()
-                .nome(campeao.getNome())
-                .email(campeao.getEmail())
-                .corSabre(campeao.getCorSabre())
-                .tipo(campeao.getTipo())
-                .afinadadeForca(5L)
-                .forcaFisica(5L)
-                .hp(150L)
-                .habilidadeComSabre(5L)
-                .mental(10L)
-                .previsao(5L)
-                .build();
+    @Override
+    public Campeao encotraCampeao(String email) {
+        return new CapeaoServiceAdpter(campeaoRepositorio.findByEmail(email)).getCampeao();
     }
 
-
-    private Campeao criarSith(Campeao campeao) {
-        System.out.println("CRIOU UM SITH");
-        return Campeao.builder()
-                .nome(campeao.getNome())
-                .email(campeao.getEmail())
-                .corSabre(campeao.getCorSabre())
-                .tipo(campeao.getTipo())
-                .afinadadeForca(5L)
-                .forcaFisica(10L)
-                .hp(150L)
-                .habilidadeComSabre(5L)
-                .mental(5L)
-                .previsao(5L)
-                .build();
-    }
 
     private void validaCampeao(Campeao campeao) throws CampeaoException {
         if (!EmailUtil.verificaEmamilValido(campeao.getEmail())) {

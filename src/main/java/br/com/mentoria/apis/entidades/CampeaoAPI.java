@@ -15,4 +15,11 @@ public class CampeaoAPI {
     private String corSabre;
     private TipoCampeaoAPI tipoCapeao;
     private String erro;
+
+    private Long hp;
+    private Long forcaFisica;
+    private Long mental;
+    private Long previsao;
+    private Long habilidadeComSabre;
+    private Long afinadadeForca;
 }

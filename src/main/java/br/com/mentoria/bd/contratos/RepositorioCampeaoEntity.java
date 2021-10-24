@@ -6,4 +6,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface RepositorioCampeaoEntity extends JpaRepository<CampeaoEntidade, Long> {
+
+
+    public CampeaoEntidade findByEmail(String email);
 }

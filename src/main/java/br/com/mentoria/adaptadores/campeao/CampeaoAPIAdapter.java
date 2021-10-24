@@ -36,6 +36,12 @@ public class CampeaoAPIAdapter {
                 .corSabre(campeao.getCorSabre())
                 .nome(campeao.getNome())
                 .tipoCapeao(new TipoCampeaoAPIAdpter(campeao.getTipo()).getCampeaoAPI())
+                .hp(campeao.getHp())
+                .afinadadeForca(campeao.getAfinadadeForca())
+                .forcaFisica(campeao.getForcaFisica())
+                .habilidadeComSabre(campeao.getHabilidadeComSabre())
+                .mental(campeao.getMental())
+                .previsao(campeao.getPrevisao())
                 .build();
     }
 
