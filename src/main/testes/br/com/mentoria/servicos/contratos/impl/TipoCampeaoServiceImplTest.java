@@ -1,6 +1,6 @@
 package br.com.mentoria.servicos.contratos.impl;
 
-import br.com.mentoria.bd.contratos.RepositorioTipoCampeao;
+import br.com.mentoria.bd.contratos.RepositorioTipoCampeaoEntity;
 import br.com.mentoria.bd.entidades.TipoCampeaoEntidade;
 import br.com.mentoria.servicos.entidades.TipoCampeao;
 
@@ -17,7 +17,7 @@ import static org.mockito.Mockito.*;
 
 public class TipoCampeaoServiceImplTest {
     @Mock
-    RepositorioTipoCampeao repositorioTipoCampeao;
+    RepositorioTipoCampeaoEntity repositorioTipoCampeaoEntity;
     @InjectMocks
     TipoCampeaoServiceImpl tipoCampeaoServiceImpl;
 
@@ -34,7 +34,7 @@ public class TipoCampeaoServiceImplTest {
                                         .tipoCampeao("tipoCampeao")
                                         .build();
 
-        when(repositorioTipoCampeao.findByNomeTecnico(anyString()))
+        when(repositorioTipoCampeaoEntity.findByNomeTecnico(anyString()))
                 .thenReturn(envio);
 
         TipoCampeao result = tipoCampeaoServiceImpl.biscaTipoCampeaoPorNomeTecnico("nomeTecnico");
@@ -49,7 +49,7 @@ public class TipoCampeaoServiceImplTest {
 
     @Test(expected = TipoCampeaoException.class)
     public void testBiscaTipoCampeaoPorNomeTecnicoComErro() throws Exception {
-        when(repositorioTipoCampeao.findByNomeTecnico(anyString())).thenReturn(null);
+        when(repositorioTipoCampeaoEntity.findByNomeTecnico(anyString())).thenReturn(null);
         TipoCampeao result = tipoCampeaoServiceImpl.biscaTipoCampeaoPorNomeTecnico("nomeTecnico");
     }
 }

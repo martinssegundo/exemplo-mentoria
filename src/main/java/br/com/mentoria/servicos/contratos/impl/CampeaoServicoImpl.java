@@ -3,29 +3,36 @@ package br.com.mentoria.servicos.contratos.impl;
 import br.com.mentoria.adaptadores.campeao.CampeaoEntidadeAdapter;
 import br.com.mentoria.adaptadores.campeao.CapeaoServiceAdpter;
 import br.com.mentoria.bd.contratos.RepositorioCampeaoEntity;
-import br.com.mentoria.bd.contratos.RepositorioTipoCampeao;
+import br.com.mentoria.bd.contratos.RepositorioTipoCampeaoEntity;
 import br.com.mentoria.servicos.contratos.CampeaoServico;
 import br.com.mentoria.servicos.entidades.Campeao;
 import br.com.mentoria.servicos.entidades.enums.TipoCampeaoEnum;
 import br.com.mentoria.servicos.exececoes.CampeaoException;
 import br.com.mentoria.servicos.util.CampeaoUtil;
 import br.com.mentoria.servicos.util.EmailUtil;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service
 public class CampeaoServicoImpl implements CampeaoServico {
 
     private RepositorioCampeaoEntity campeaoRepositorio;
-    private RepositorioTipoCampeao repositorioTipoCampeao;
+    private RepositorioTipoCampeaoEntity repositorioTipoCampeaoEntity;
 
-    @Autowired
-    public CampeaoServicoImpl(RepositorioCampeaoEntity campeaoRepositorio,
-                              RepositorioTipoCampeao repositorioTipoCampeao){
+    private static CampeaoServico instance;
+
+
+    private CampeaoServicoImpl(RepositorioCampeaoEntity campeaoRepositorio,
+                              RepositorioTipoCampeaoEntity repositorioTipoCampeaoEntity){
         this.campeaoRepositorio = campeaoRepositorio;
-        this.repositorioTipoCampeao = repositorioTipoCampeao;
+        this.repositorioTipoCampeaoEntity = repositorioTipoCampeaoEntity;
+    }
+
+    public static CampeaoServico getInstance(RepositorioCampeaoEntity campeaoRepositorio,
+                                             RepositorioTipoCampeaoEntity repositorioTipoCampeaoEntity){
+        if(instance == null){
+            instance = new CampeaoServicoImpl(campeaoRepositorio, repositorioTipoCampeaoEntity);
+        }
+        return instance;
     }
 
     @Override
@@ -39,7 +46,7 @@ public class CampeaoServicoImpl implements CampeaoServico {
             throw new CampeaoException("Um tipo de campeão não existente foi selecionado");
         }
 
-        campeaoRepositorio.save(new CampeaoEntidadeAdapter(campeao, repositorioTipoCampeao)
+        campeaoRepositorio.save(new CampeaoEntidadeAdapter(campeao, repositorioTipoCampeaoEntity)
                 .getCampeaoEntidade());
 
 

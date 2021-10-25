@@ -4,13 +4,13 @@ import br.com.mentoria.adaptadores.campeao.CampeaoAPIAdapter;
 import br.com.mentoria.adaptadores.campeao.CapeaoServiceAdpter;
 import br.com.mentoria.apis.contratos.ApiCampeao;
 import br.com.mentoria.apis.entidades.CampeaoAPI;
+import br.com.mentoria.fabricas.contratos.FabricaInstancias;
 import br.com.mentoria.servicos.contratos.CampeaoServico;
 import br.com.mentoria.servicos.exececoes.CampeaoException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.websocket.server.PathParam;
 import java.util.List;
 
 @RestController
@@ -20,8 +20,8 @@ public class ApiCampeaoImpl implements ApiCampeao {
 	private CampeaoServico campeaoServico;
 
 	@Autowired
-	public ApiCampeaoImpl(CampeaoServico campeaoServico){
-		this.campeaoServico = campeaoServico;
+	public ApiCampeaoImpl(FabricaInstancias fabricaInstancias){
+		this.campeaoServico = fabricaInstancias.getCampeaoServicoImple();
 	}
 
 
