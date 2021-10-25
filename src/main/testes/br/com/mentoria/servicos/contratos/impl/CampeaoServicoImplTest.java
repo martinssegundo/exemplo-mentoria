@@ -1,7 +1,7 @@
 package br.com.mentoria.servicos.contratos.impl;
 
 import br.com.mentoria.bd.contratos.RepositorioCampeaoEntity;
-import br.com.mentoria.bd.contratos.RepositorioTipoCampeao;
+import br.com.mentoria.bd.contratos.RepositorioTipoCampeaoEntity;
 import br.com.mentoria.bd.entidades.CampeaoEntidade;
 import br.com.mentoria.bd.entidades.TipoCampeaoEntidade;
 import br.com.mentoria.servicos.entidades.Campeao;
@@ -26,7 +26,7 @@ public class CampeaoServicoImplTest {
     @Mock
     RepositorioCampeaoEntity campeaoRepositorio;
     @Mock
-    RepositorioTipoCampeao repositorioTipoCampeao;
+    RepositorioTipoCampeaoEntity repositorioTipoCampeaoEntity;
     @InjectMocks
     CampeaoServicoImpl campeaoServicoImpl;
 
@@ -39,7 +39,7 @@ public class CampeaoServicoImplTest {
     public void testSalvarCampeao() throws Exception {
         when(campeaoRepositorio.save(any()))
                 .thenReturn(CampeaoBuilder.campeaoEntidadeBuilder());
-        when(repositorioTipoCampeao.findByNomeTecnico(anyString()))
+        when(repositorioTipoCampeaoEntity.findByNomeTecnico(anyString()))
                 .thenReturn(TipoCampeaoBuilder.tipoCampeaoEntidadeBuilder());
         boolean result = campeaoServicoImpl.salvarCampeao(CampeaoBuilder.campeaoBuilder());
         Assert.assertEquals(true, result);
@@ -52,7 +52,7 @@ public class CampeaoServicoImplTest {
                 .thenReturn(CampeaoBuilder.campeaoEntidadeBuilder());
         TipoCampeaoEntidade entidadeRetorno = TipoCampeaoBuilder.tipoCampeaoEntidadeBuilder();
         entidadeRetorno.setTipoCampeao("ABC");
-        when(repositorioTipoCampeao.findByNomeTecnico(anyString()))
+        when(repositorioTipoCampeaoEntity.findByNomeTecnico(anyString()))
                 .thenReturn(entidadeRetorno);
         Campeao campeaoEnviado = CampeaoBuilder.campeaoBuilder();
         campeaoEnviado.setTipo(TipoCampeao.builder().nomeTecnico("abc").build());
@@ -63,7 +63,7 @@ public class CampeaoServicoImplTest {
     public void testSalvarCampeaoErroValidacaoEmail() throws Exception {
         when(campeaoRepositorio.save(any()))
                 .thenReturn(CampeaoBuilder.campeaoEntidadeBuilder());
-        when(repositorioTipoCampeao.findByNomeTecnico(anyString()))
+        when(repositorioTipoCampeaoEntity.findByNomeTecnico(anyString()))
                 .thenReturn(TipoCampeaoBuilder.tipoCampeaoEntidadeBuilder());
         Campeao campeaoEnviadoSalvar = CampeaoBuilder.campeaoBuilder();
         campeaoEnviadoSalvar.setEmail("abc");
@@ -74,7 +74,7 @@ public class CampeaoServicoImplTest {
     public void testSalvarCampeaoErroValidacaoNome() throws Exception {
         when(campeaoRepositorio.save(any()))
                 .thenReturn(CampeaoBuilder.campeaoEntidadeBuilder());
-        when(repositorioTipoCampeao.findByNomeTecnico(anyString()))
+        when(repositorioTipoCampeaoEntity.findByNomeTecnico(anyString()))
                 .thenReturn(TipoCampeaoBuilder.tipoCampeaoEntidadeBuilder());
         Campeao campeaoEnviadoSalvar = CampeaoBuilder.campeaoBuilder();
         campeaoEnviadoSalvar.setNome("");
@@ -85,7 +85,7 @@ public class CampeaoServicoImplTest {
     public void testSalvarCampeaoErroValidacaoCorSabre() throws Exception {
         when(campeaoRepositorio.save(any()))
                 .thenReturn(CampeaoBuilder.campeaoEntidadeBuilder());
-        when(repositorioTipoCampeao.findByNomeTecnico(anyString()))
+        when(repositorioTipoCampeaoEntity.findByNomeTecnico(anyString()))
                 .thenReturn(TipoCampeaoBuilder.tipoCampeaoEntidadeBuilder());
         Campeao campeaoEnviadoSalvar = CampeaoBuilder.campeaoBuilder();
         campeaoEnviadoSalvar.setCorSabre("");

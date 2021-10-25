@@ -7,7 +7,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface RepositorioTipoCampeao extends JpaRepository<TipoCampeaoEntidade,Long> {
+public interface RepositorioTipoCampeaoEntity extends JpaRepository<TipoCampeaoEntidade,Long> {
 
     @Query(value = "select tc from TipoCampeaoEntidade tc " +
             "where tc.nomeTecnico like :nomeTecnico")

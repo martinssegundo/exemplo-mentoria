@@ -51,7 +51,10 @@ public class CampeaoEntidade {
     @Column(name = "QTDA_AFINIDADE_FORCA")
     private Long afinadadeForca;
 
-    @ManyToOne(cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH })
+    @ManyToOne(
+            cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH },
+            fetch = FetchType.EAGER
+    )
     @JoinTable(
             name = "TB_CAMPEAO_TIPO",
             joinColumns = @JoinColumn(name = "ID_CAPEAO",

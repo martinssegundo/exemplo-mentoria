@@ -1,6 +1,6 @@
 package br.com.mentoria.adaptadores.tipoCampeao;
 
-import br.com.mentoria.bd.contratos.RepositorioTipoCampeao;
+import br.com.mentoria.bd.contratos.RepositorioTipoCampeaoEntity;
 import br.com.mentoria.bd.entidades.TipoCampeaoEntidade;
 import br.com.mentoria.servicos.entidades.TipoCampeao;
 import lombok.Data;
@@ -11,16 +11,16 @@ public class TipoCampeaoEntidadeAdpter {
     private TipoCampeaoEntidade tipoCampeaoEntidade;
 
     public TipoCampeaoEntidadeAdpter(TipoCampeao tipoCampeao,
-                                     RepositorioTipoCampeao repositorioTipoCampeao){
+                                     RepositorioTipoCampeaoEntity repositorioTipoCampeaoEntity){
         this.tipoCampeaoEntidade = converterTipoCampeaoEmTipoCampeaoEntidade(
                 tipoCampeao,
-                repositorioTipoCampeao
+                repositorioTipoCampeaoEntity
         );
     }
 
     private TipoCampeaoEntidade converterTipoCampeaoEmTipoCampeaoEntidade(
             TipoCampeao tipoCampeao,
-            RepositorioTipoCampeao repositorioTipoCampeao){
-        return repositorioTipoCampeao.findByNomeTecnico(tipoCampeao.getNomeTecnico());
+            RepositorioTipoCampeaoEntity repositorioTipoCampeaoEntity){
+        return repositorioTipoCampeaoEntity.findByNomeTecnico(tipoCampeao.getNomeTecnico());
     }
 }
