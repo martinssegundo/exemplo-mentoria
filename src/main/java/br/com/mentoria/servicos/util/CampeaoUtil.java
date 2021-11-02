@@ -6,6 +6,16 @@ public class CampeaoUtil {
 
     private CampeaoUtil(){}
 
+    //TODO: Alterar para receber valores do properties
+    public static Long maiorLevelDesafiado(Long lvlCampeaoDesafiante){
+        return lvlCampeaoDesafiante + 5;
+    }
+
+    //TODO: Alterar para receber valores do properties
+    public static Long menorLevelDesafiado(Long lvlCampeaoDesafiante){
+        return lvlCampeaoDesafiante - 5;
+    }
+
     public static Campeao criarJedi(Campeao campeao) {
         System.out.println("CRIOU UM JEDI");
         return Campeao.builder()

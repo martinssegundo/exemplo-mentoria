@@ -4,6 +4,7 @@ import br.com.mentoria.adaptadores.tipoCampeao.TipoCampeaoAdapter;
 import br.com.mentoria.apis.entidades.CampeaoAPI;
 import br.com.mentoria.bd.entidades.CampeaoEntidade;
 import br.com.mentoria.servicos.entidades.Campeao;
+import br.com.mentoria.servicos.entidades.RetornoCampeao;
 import lombok.Data;
 
 import java.util.ArrayList;
@@ -26,7 +27,6 @@ public class CapeaoServiceAdpter {
     public CapeaoServiceAdpter(List<CampeaoEntidade> campeaoEntities){
         setCampeoes(convertListEntityEmListCampeao(campeaoEntities));
     }
-
 
     private List<Campeao> convertListEntityEmListCampeao(List<CampeaoEntidade> campeaoEntidadeList){
         campeoes = new ArrayList<>();

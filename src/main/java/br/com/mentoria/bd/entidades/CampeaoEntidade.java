@@ -50,6 +50,12 @@ public class CampeaoEntidade {
     private Long habilidadeComSabre;
     @Column(name = "QTDA_AFINIDADE_FORCA")
     private Long afinadadeForca;
+    @Column(name = "QTDE_LVL_CAMPEAO")
+    private Long level;
+    @Column(name = "QTDE_XP_CAMPEAO")
+    private Long xp;
+    @Column(name = "QTDE_XP_PROXIMO_LVL")
+    private Long xpProximoLvl;
 
     @ManyToOne(
             cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH },

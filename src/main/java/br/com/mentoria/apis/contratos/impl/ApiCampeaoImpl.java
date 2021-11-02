@@ -4,6 +4,7 @@ import br.com.mentoria.adaptadores.campeao.CampeaoAPIAdapter;
 import br.com.mentoria.adaptadores.campeao.CapeaoServiceAdpter;
 import br.com.mentoria.apis.contratos.ApiCampeao;
 import br.com.mentoria.apis.entidades.CampeaoAPI;
+import br.com.mentoria.apis.entidades.combate.RetornoCombateAPI;
 import br.com.mentoria.fabricas.contratos.FabricaInstancias;
 import br.com.mentoria.servicos.contratos.CampeaoServico;
 import br.com.mentoria.servicos.exececoes.CampeaoException;
@@ -51,5 +52,11 @@ public class ApiCampeaoImpl implements ApiCampeao {
 		CampeaoAPI campeaoRetornado =
 				new CampeaoAPIAdapter(campeaoServico.encotraCampeao(email)).getCampeaoAPI();
 		return ResponseEntity.ok(campeaoRetornado);
+	}
+
+	@Override
+	@GetMapping(value = "/encotrar/combatentes/{email}")
+	public ResponseEntity<RetornoCombateAPI> retornaCombatentes(String emailSolicitanteCombate) {
+		return null;
 	}
 }
