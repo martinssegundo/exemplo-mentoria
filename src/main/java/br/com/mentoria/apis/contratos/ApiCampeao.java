@@ -1,6 +1,8 @@
 package br.com.mentoria.apis.contratos;
 
 import br.com.mentoria.apis.entidades.CampeaoAPI;
+import br.com.mentoria.apis.entidades.combate.RetornoCampeaoCombateAPI;
+import br.com.mentoria.apis.entidades.combate.RetornoCombateAPI;
 import br.com.mentoria.servicos.exececoes.CampeaoException;
 import org.springframework.http.ResponseEntity;
 
@@ -8,7 +10,6 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 
-import javax.websocket.server.PathParam;
 import java.util.List;
 
 public interface ApiCampeao {
@@ -40,4 +41,12 @@ public interface ApiCampeao {
     })
     ResponseEntity<CampeaoAPI> retornaCampeao(String email) throws CampeaoException;
 
+
+    @ApiOperation(value = "Retorna os campeões que iram combater")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Retorna o capeão"),
+            @ApiResponse(code = 403, message = "Você não tem permissão para acessar este recurso"),
+            @ApiResponse(code = 500, message = "Retornara uma mensagem amigável para o usuário"),
+    })
+    ResponseEntity<RetornoCombateAPI> retornaCombatentes(String emailSolicitanteCombate);
 }

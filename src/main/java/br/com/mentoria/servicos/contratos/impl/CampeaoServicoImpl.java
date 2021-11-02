@@ -6,6 +6,7 @@ import br.com.mentoria.bd.contratos.RepositorioCampeaoEntity;
 import br.com.mentoria.bd.contratos.RepositorioTipoCampeaoEntity;
 import br.com.mentoria.servicos.contratos.CampeaoServico;
 import br.com.mentoria.servicos.entidades.Campeao;
+import br.com.mentoria.servicos.entidades.RetornoCampeao;
 import br.com.mentoria.servicos.entidades.enums.TipoCampeaoEnum;
 import br.com.mentoria.servicos.exececoes.CampeaoException;
 import br.com.mentoria.servicos.util.CampeaoUtil;
@@ -63,6 +64,26 @@ public class CampeaoServicoImpl implements CampeaoServico {
         return new CapeaoServiceAdpter(campeaoRepositorio.findByEmail(email)).getCampeao();
     }
 
+    @Override
+    public RetornoCampeao buscarCapeaosCombate(String email) {
+        Campeao campeaoDesafiante = encotraCampeao(email);
+
+
+        return null;
+    }
+
+
+    private Campeao getCampeaoDesafiado(Campeao campeaoDesafiante){
+        List<Campeao> campeoesDesafiados =
+                new CapeaoServiceAdpter(campeaoRepositorio.findDesafianteByLvl(
+                        CampeaoUtil.menorLevelDesafiado(campeaoDesafiante.getLevel()),
+                        CampeaoUtil.maiorLevelDesafiado(campeaoDesafiante.getLevel())))
+                        .getCampeoes();
+
+        
+
+
+    }
 
     private void validaCampeao(Campeao campeao) throws CampeaoException {
         if (!EmailUtil.verificaEmamilValido(campeao.getEmail())) {
